@@ -9,6 +9,10 @@ import Vue from 'vue'
 import router from './router'
 import store from './store'
 import App from './views/App'
+import Vuetify from 'vuetify';
+import Vuelidate from 'vuelidate'
+Vue.use(Vuelidate)
+Vue.use(Vuetify);
 
 router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresAuth)) {
@@ -30,5 +34,6 @@ const app = new Vue({
     el: '#app',
    // components: { 'app':App },
     router,
-    store
+    store,
+    vuetify: new Vuetify(),
 });
