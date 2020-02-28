@@ -8,12 +8,19 @@ import Login from './views/Login'
 import Logout from './views/Logout'
 import Dashboard from './views/Dashboard'
 import HolaMundo from './views/HolaMundo'
+import Home from './views/Home'
 
 // Routes
 const router = new VueRouter({
     mode: 'history',
     linkActiveClass: 'is-active',
     routes: [
+        {
+            path: '/',
+            name: 'home',
+            component: Home,
+            
+        },
         {
             path: '/login',
             name: 'login',

@@ -26,6 +26,7 @@ class AuthController extends Controller
         } catch (\GuzzleHttp\Exception\BadResponseException $e) {
             
             if ($e->getCode() === 400) {
+                dd($e);
                 return response()->json('Invalid Request. Please enter a username or a password.', $e->getCode());
             } else if ($e->getCode() === 401) {
                 return response()->json('Your credentials are incorrect. Please try again', $e->getCode());

@@ -1,5 +1,5 @@
 <template>
-  <v-app id="inspire">
+  <!-- <v-app id="inspire">
     <v-content>
       <v-container
         class="fill-height"
@@ -64,9 +64,41 @@
         </v-row>
       </v-container>
     </v-content>
-  </v-app>
-</template>
+  </v-app> -->
+  <div class="container mt-10">
+    <h2>Inventario de Bienes Culturales Muebles bajo resguardo de la Presidencia de la República en Palacio Nacional</h2>
+    <hr class="red">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <h4>Login</h4>
 
+                <div class="card-body">
+                   <form role="form">
+                      <div class="form-group">
+                        <label class="control-label" for="email-01">Usuario:</label>
+                        <input class="form-control" id="email-01" placeholder="Correo electrónico" type="text">
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label" for="password-01">Contraseña</label>
+                        <input class="form-control" id="password-01" placeholder="Contraseña" type="password">
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label" for="file-01">Cargar archivo:</label>
+                        <input id="file-01" type="file">
+                      </div>
+                      <button class="btn btn-primary pull-right" type="submit">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</template>
+<style lang="stylus">
+
+
+</style>
 <script>
 export default {
   data() {

@@ -4,29 +4,45 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-//require('./bootstrap');
+require('./bootstrap');
 import Vue from 'vue'
 import router from './router'
 import store from './store'
 import App from './views/App'
-import Vuetify from 'vuetify';
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import Vuelidate from 'vuelidate'
+Vue.use(BootstrapVue)
+Vue.use(IconsPlugin)
+
 Vue.use(Vuelidate)
-Vue.use(Vuetify);
+
 
 router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresAuth)) {
       // this route requires auth, check if logged in
       // if not, redirect to login page.
       if (!store.getters.loggedIn) {
+        store.state.entryUrl = to.path;
         next({
           name: 'login',
         })
       } else {
-        next()
+        if (store.state.entryUrl) {
+          const url = store.state.entryUrl;
+          store.state.entryUrl = null;
+          return next(url); // goto stored url
+        } else {
+          return next(); // all is fine
+        }
+       
       }
     } else {
-      next() // make sure to always call next()!
+      if(to.path=="/login" && store.getters.loggedIn){
+        return next('/dashboard');
+      }else{
+          next() // make sure to always call next()!
+      }
+     
     }
   })
   Vue.component('app', require('./views/App.vue').default);
@@ -35,5 +51,4 @@ const app = new Vue({
    // components: { 'app':App },
     router,
     store,
-    vuetify: new Vuetify(),
 });
