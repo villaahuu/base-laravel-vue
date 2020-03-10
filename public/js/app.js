@@ -2037,6 +2037,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2727,30 +2742,43 @@ var render = function() {
                               attrs: { color: "blue-grey lighten-5", flat: "" }
                             },
                             [
-                              _c("v-toolbar-title", [
-                                _c("img", {
-                                  staticClass: "center",
-                                  attrs: {
-                                    src:
-                                      "http://172.16.4.242/img/pleca_gobierno.png",
-                                    height: "30",
-                                    alt: ""
-                                  }
-                                })
-                              ]),
-                              _vm._v(" "),
-                              _c("v-spacer"),
-                              _vm._v(" "),
                               _c(
-                                "span",
-                                { staticClass: "text-right overline" },
+                                "v-container",
                                 [
-                                  _vm._v("Proyecto de verificacion física "),
-                                  _c("br"),
-                                  _vm._v(" y actualización del inventario"),
-                                  _c("br"),
-                                  _vm._v("en Palacio Nacional")
-                                ]
+                                  _c(
+                                    "v-row",
+                                    { staticClass: "mt-3" },
+                                    [
+                                      _c(
+                                        "v-col",
+                                        {
+                                          attrs: {
+                                            cols: "12",
+                                            md: "7",
+                                            lg: "7"
+                                          }
+                                        },
+                                        [
+                                          _c("v-toolbar-title", [
+                                            _c("img", {
+                                              staticClass:
+                                                "center .d-none .d-sm-flex .d-md-none",
+                                              attrs: {
+                                                src:
+                                                  "http://172.16.4.242/img/pleca_gobierno.png",
+                                                height: "30",
+                                                alt: ""
+                                              }
+                                            })
+                                          ])
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
                               )
                             ],
                             1
@@ -61322,14 +61350,25 @@ _router__WEBPACK_IMPORTED_MODULE_1__["default"].beforeEach(function (to, from, n
     // this route requires auth, check if logged in
     // if not, redirect to login page.
     if (!_store__WEBPACK_IMPORTED_MODULE_2__["default"].getters.loggedIn) {
+      _store__WEBPACK_IMPORTED_MODULE_2__["default"].state.entryUrl = to.path;
       next({
         name: 'login'
       });
     } else {
-      next();
+      if (_store__WEBPACK_IMPORTED_MODULE_2__["default"].state.entryUrl) {
+        var url = _store__WEBPACK_IMPORTED_MODULE_2__["default"].state.entryUrl;
+        _store__WEBPACK_IMPORTED_MODULE_2__["default"].state.entryUrl = null;
+        return next(url); // goto stored url
+      } else {
+        return next(); // all is fine
+      }
     }
   } else {
-    next(); // make sure to always call next()!
+    if (to.path == "/login" && _store__WEBPACK_IMPORTED_MODULE_2__["default"].getters.loggedIn) {
+      return next('/dashboard');
+    } else {
+      next(); // make sure to always call next()!
+    }
   }
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('app', __webpack_require__(/*! ./views/App.vue */ "./resources/js/views/App.vue")["default"]);
@@ -61431,7 +61470,8 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
-    token: localStorage.getItem('access_token') || null
+    token: localStorage.getItem('access_token') || null,
+    entryUrl: null
   },
   getters: {
     loggedIn: function loggedIn(state) {
@@ -61923,8 +61963,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/javiervillalobos/Documentos/base/baselogin/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/javiervillalobos/Documentos/base/baselogin/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/javiervillalobos/Documentos/salones-presidenciales-prod/base-laravel-vue/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/javiervillalobos/Documentos/salones-presidenciales-prod/base-laravel-vue/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

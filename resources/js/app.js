@@ -15,19 +15,32 @@ Vue.use(Vuelidate)
 Vue.use(Vuetify);
 
 router.beforeEach((to, from, next) => {
-    if (to.matched.some(record => record.meta.requiresAuth)) {
-      // this route requires auth, check if logged in
-      // if not, redirect to login page.
-      if (!store.getters.loggedIn) {
-        next({
-          name: 'login',
-        })
-      } else {
-        next()
-      }
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    if (!store.getters.loggedIn) {
+      store.state.entryUrl = to.path;
+      next({
+        name: 'login',
+      })
     } else {
-      next() // make sure to always call next()!
+      if (store.state.entryUrl) {
+        const url = store.state.entryUrl;
+        store.state.entryUrl = null;
+        return next(url); // goto stored url
+      } else {
+        return next(); // all is fine
+      }
+     
     }
+  } else {
+    if(to.path=="/login" && store.getters.loggedIn){
+      return next('/dashboard');
+    }else{
+        next() // make sure to always call next()!
+    }
+   
+  }
   })
   Vue.component('app', require('./views/App.vue').default);
 const app = new Vue({

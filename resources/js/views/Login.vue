@@ -15,18 +15,33 @@
             md="4"
           >
             <v-card class="elevation-12">
+              
               <v-toolbar
                 color="blue-grey lighten-5"
               
                 flat
               >
-                <v-toolbar-title>
-                  <img src="http://172.16.4.242/img/pleca_gobierno.png" class="center" height="30" alt="">
-                  
-                </v-toolbar-title>
-                <v-spacer />
-                <span class="text-right overline">Proyecto de verificacion física <br> y actualización del inventario<br>en Palacio Nacional</span>
-               
+              <v-container>
+
+
+              
+              <v-row
+              class="mt-3">  
+                <v-col
+                  cols="12"
+                  md="7"
+                  lg="7">
+                    <v-toolbar-title>
+                      <img src="http://172.16.4.242/img/pleca_gobierno.png" class="center .d-none .d-sm-flex .d-md-none" height="30" alt=""> 
+                    </v-toolbar-title>
+                </v-col>
+                
+                
+                
+                
+              </v-row>
+              
+              </v-container>
               </v-toolbar>
               <v-card-text>
                 <v-form autocomplete="off" @submit.prevent="login" method="post" lazy-validation>
