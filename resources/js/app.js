@@ -11,6 +11,10 @@ import store from './store'
 import App from './views/App'
 import Vuetify from 'vuetify';
 import Vuelidate from 'vuelidate'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+ 
+Vue.use(VueAxios, axios)
 Vue.use(Vuelidate)
 Vue.use(Vuetify);
 

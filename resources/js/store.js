@@ -6,22 +6,49 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     token: localStorage.getItem('access_token') || null,
-    entryUrl: null
+    entryUrl: null,
+    user:{}
   },
-  getters: {
-    loggedIn(state) {
-      return state.token !== null
-    }
-  },
+  
   mutations: {
     retrieveToken(state, token) {
       state.token = token
     },
     destroyToken(state) {
       state.token = null
+    },
+    retrieveUser(state,user){
+      state.user=user
     }
   },
   actions: {
+    currentUser(context) {
+
+      return new Promise((resolve, reject) => {
+        axios.get('/api/user', {
+          headers: {
+            Authorization: 'Bearer ' + this.state.token,
+            Accept:'application/json' 
+            //the token is a variable which holds the token
+          }
+        })
+          .then(response => {
+            //console.log(response)
+            const usuario = response.data
+            console.log(usuario)
+            
+            context.commit('retrieveUser', usuario)
+
+            resolve(response)
+          })
+          .catch(error => {
+            console.log(error)
+            reject(error)
+          })
+      })
+
+    },
+    
     retrieveToken(context, credentials) {
 
       return new Promise((resolve, reject) => {
@@ -53,14 +80,14 @@ const store = new Vuex.Store({
               headers: { Authorization: "Bearer " + context.state.token }
             })
             .then(response => {
-              //console.log(response)
+              console.log(response)
               localStorage.removeItem('access_token')
               context.commit('destroyToken')
   
               resolve(response)
             })
             .catch(error => {
-              //console.log(error)
+              console.log(error)
               localStorage.removeItem('access_token')
               context.commit('destroyToken')
 
@@ -69,6 +96,14 @@ const store = new Vuex.Store({
         })
 
       }
+    }
+  },
+  getters: {
+    loggedIn(state) {
+      return state.token !== null
+    },
+    usuario(state){
+      return state.user
     }
   }
 })

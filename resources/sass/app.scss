@@ -4,7 +4,44 @@
 // Variables
 @import 'variables';
 
-// Bootstrap
+// Bootstrap s.ajdfaslkdjfñl asdkjflñask djfñlaskd jfñlsa kjdf asñldkfjasñldkfjslñadkjfñlsadkjfñlsakjdfñlaksjdfñlkasjdñfkasjñdlfkjasñdlkfjasñlkdfjañslkdjfñalskdjfñlasdkjfñsalkdjf
 //@import '~bootstrap/scss/bootstrap';
 @import '~vuetify/dist/vuetify.min.css';
 @import '~@mdi/font/css/materialdesignicons.min.css';
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap');
+hr.gob {
+    margin: 10px 0 70px;
+    border-top-color: #DCE0E0;
+}
+
+
+hr {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border-top: 1px solid #eee;
+}
+hr {
+    box-sizing: content-box;
+    height: 0;
+}
+hr, img {
+    border: 0;
+}
+hr {
+    display: block;
+    unicode-bidi: isolate;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    overflow: hidden;
+    border-style: inset;
+    border-width: 1px;
+}
+hr.gob:before {
+    content: "";
+    width: 35px;
+    height: 5px;
+    background-color: #B38E5D;
+    position: absolute;
+}

@@ -1,5 +1,5 @@
 <template>
-  <v-app id="inspire">
+  
     <v-content>
       <v-container
         class="fill-height"
@@ -79,7 +79,7 @@
         </v-row>
       </v-container>
     </v-content>
-  </v-app>
+
 </template>
 
 <script>
@@ -111,6 +111,7 @@ export default {
             password: this.password
           })
           .then(response => {
+
             this.$router.push({ name: "dashboard" });
           })
           .catch(error => {
